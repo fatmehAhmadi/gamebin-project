@@ -26,3 +26,4 @@ this.modal.push({id:id,visible:false})
 
   }
 }
+}

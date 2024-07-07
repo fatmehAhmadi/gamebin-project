@@ -11,6 +11,7 @@ import { ModalService } from '../../service/modal.service';
 })
 export class AuthModalComponent {
   constructor(public modal: ModalService) {}
+
   ngOnInit() {
     this.modal.register('auth');
   }
