@@ -12,4 +12,6 @@ import { AuthModalComponent } from "./user/auth-modal/auth-modal.component";
 })
 export class AppComponent {
   title = 'gamebin-project';
+
+  
 }
