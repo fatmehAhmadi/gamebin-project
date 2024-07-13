@@ -14,7 +14,7 @@ import { TabComponent } from '../tab/tab.component';
 export class TabsContainerComponent implements AfterViewInit {
   @ContentChildren(TabComponent) tabs: QueryList<TabComponent> =
     new QueryList();
-active: any;
+  active: any;
 
   ngAfterViewInit() {
     const activeTabs: TabComponent[] = this.tabs.filter((tab) => tab.active);
@@ -28,5 +28,7 @@ active: any;
       tab.active = false;
     });
     tab.active = true;
+
+    return false;
   }
 }

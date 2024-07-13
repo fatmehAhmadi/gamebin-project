@@ -1,27 +1,54 @@
-   <!-- Login Form -->
-   <form>
-    <!-- Email -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">ایمیل</label>
-      <input
-        type="email"
-        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-        placeholder=" ایمیل"
-      />
-    </div>
-    <!-- Password -->
-    <div class="mb-3">
-      <label class="inline-block mb-2">رمز عبور</label>
-      <input
-        type="password"
-        class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-        placeholder="رمز عبور"
-      />
-    </div>
-    <button
-      type="submit"
-      class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500"
-    >
-      ورود
-    </button>
-  </form>
+<!-- Login Form -->
+<form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+  <!-- Email -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">ایمیل</label>
+    <input
+      type="email"
+      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+      placeholder=" ایمیل"
+      #emaill="ngModel"
+      name="email"
+      [(ngModel)]="email"
+      required
+      email
+    />
+    @if(emaill.errors?.['required'] && (emaill.touched || emaill.dirty)){
+    <p class="text-red-400">این فیلد اجباری است</p>
+    } @if(emaill.errors?.['email']){
+    <p class="text-red-400">ایمیل معتبر نیست</p>
+    }
+  </div>
+
+  <!-- Password -->
+  <div class="mb-3">
+    <label class="inline-block mb-2">رمز عبور</label>
+    <input
+      type="password"
+      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
+      placeholder="رمز عبور"
+      #passwordd="ngModel"
+      [(ngModel)]="password"
+      name="password"
+      required
+      minlength="3"
+    />
+    @if(passwordd.errors?.['required'] && (passwordd.touched ||
+    passwordd.dirty)){
+    <p class="text-red-400">این فیلد اجباری است</p>
+    }@if(passwordd.errors?.['minlength']){
+    <p class="text-red-400">
+      طول این فیلد حداقل باید
+      {{passwordd.errors?.['minlength']['requiredLength']}}
+      کاراکتر باشد .
+    </p>
+    }
+  </div>
+  <button
+    type="submit"
+    [disabled]="!loginForm.valid"
+    class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500"
+  >
+    ورود
+  </button>
+</form>

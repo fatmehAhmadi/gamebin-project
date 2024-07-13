@@ -3,12 +3,25 @@
   <!-- Name -->
   <div class="mb-3">
     <label class="inline-block mb-2">نام</label>
+<app-input placeholder="نام"></app-input>
     <input
       formControlName="name"
       type="text"
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
       placeholder=" نام"
+      minlength="3"
     />
+    @if (registerForm.controls.name.invalid &&( registerForm.controls.name.dirty
+    || registerForm.controls.name.touched)) { @if
+    (registerForm.controls.name.hasError('required')) {
+    <p class="text-red-400">این فیلد اجباری است</p>
+    } } @if (registerForm.controls.name.hasError('minlength')) {
+    <p class="text-red-400">
+      طول این فیلد حداقل باید
+      {{registerForm.controls.name.errors?.['minlength']['requiredLength']}}
+      کاراکتر باشد .
+    </p>
+    }
   </div>
   <!-- Email -->
   <div class="mb-3">
@@ -19,6 +32,13 @@
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
       placeholder=" ایمیل"
     />
+    @if (registerForm.controls.email.invalid &&(
+    registerForm.controls.email.dirty || registerForm.controls.email.touched)) {
+    @if (registerForm.controls.email.hasError('required')) {
+    <p class="text-red-400">این فیلد اجباری است</p>
+    } } @if (registerForm.controls.email.hasError('email')) {
+    <p class="text-red-400">لطفاً یک آدرس ایمیل معتبر وارد کنید.</p>
+    }
   </div>
   <!-- Age -->
   <div class="mb-3">
@@ -28,6 +48,17 @@
       type="number"
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
     />
+    @if (registerForm.controls.age.invalid &&( registerForm.controls.age.dirty
+    || registerForm.controls.age.touched)) { @if
+    (registerForm.controls.age.hasError('required')) {
+    <p class="text-red-400">این فیلد اجباری است</p>
+    } } @if (registerForm.controls.age.hasError('min')) {
+    <p class="text-red-400">
+      کاربر باید حداقل
+      {{registerForm.controls.age.errors?.['min']?.min}}
+      سال سن داشته باشد .
+    </p>
+    }
   </div>
   <!-- Password -->
   <div class="mb-3">
@@ -38,6 +69,12 @@
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
       placeholder="رمز عبور "
     />
+    @if (registerForm.controls.password.invalid &&(
+    registerForm.controls.password.dirty ||
+    registerForm.controls.password.touched)) { @if
+    (registerForm.controls.password.hasError('required')) {
+    <p class="text-red-400">این فیلد اجباری است</p>
+    } }
   </div>
   <!-- Confirm Password -->
   <div class="mb-3">
@@ -48,6 +85,12 @@
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
       placeholder="تکرار رمز عبور "
     />
+    @if (registerForm.controls.confirmPass.invalid &&(
+    registerForm.controls.confirmPass.dirty ||
+    registerForm.controls.confirmPass.touched)) { @if
+    (registerForm.controls.confirmPass.hasError('required')) {
+    <p class="text-red-400">این فیلد اجباری است</p>
+    } }
   </div>
   <!-- Phone Number -->
   <div class="mb-3">
@@ -57,7 +100,20 @@
       type="text"
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
       placeholder="شماره تلفن را وارد کنید"
+      minlength="11"
     />
+    @if (registerForm.controls.phoneNumber.invalid &&(
+    registerForm.controls.phoneNumber.dirty ||
+    registerForm.controls.phoneNumber.touched)) { @if
+    (registerForm.controls.phoneNumber.hasError('required')) {
+    <p class="text-red-400">این فیلد اجباری است</p>
+    } } @if (registerForm.controls.phoneNumber.hasError('minlength')) {
+    <p class="text-red-400">
+      طول این فیلد حداقل باید
+      {{registerForm.controls.phoneNumber.errors?.['minlength']['requiredLength']}}
+      کاراکتر باشد .
+    </p>
+    }
   </div>
   <button
     type="submit"
