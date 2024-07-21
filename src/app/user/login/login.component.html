@@ -47,6 +47,9 @@
   <button
     type="submit"
     [disabled]="!loginForm.valid"
+    [ngClass]="{
+      'bg-gray-500 text-white hover:bg-gray-500': !loginForm.valid
+    }"
     class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500"
   >
     ورود

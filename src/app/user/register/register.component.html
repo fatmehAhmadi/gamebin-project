@@ -1,121 +1,64 @@
 <!-- Registration Form -->
-<form [formGroup]="registerForm">
+<form [formGroup]="registerForm" (ngSubmit)="onsubmit(registerForm)">
   <!-- Name -->
   <div class="mb-3">
-    <label class="inline-block mb-2">نام</label>
-<app-input placeholder="نام"></app-input>
-    <input
-      formControlName="name"
-      type="text"
-      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder=" نام"
-      minlength="3"
-    />
-    @if (registerForm.controls.name.invalid &&( registerForm.controls.name.dirty
-    || registerForm.controls.name.touched)) { @if
-    (registerForm.controls.name.hasError('required')) {
-    <p class="text-red-400">این فیلد اجباری است</p>
-    } } @if (registerForm.controls.name.hasError('minlength')) {
-    <p class="text-red-400">
-      طول این فیلد حداقل باید
-      {{registerForm.controls.name.errors?.['minlength']['requiredLength']}}
-      کاراکتر باشد .
-    </p>
-    }
+    <app-input
+      [control]="registerForm.controls.name"
+      [lable]="'نام'"
+      [placeholder]="'نام'"
+    ></app-input>
   </div>
   <!-- Email -->
   <div class="mb-3">
-    <label class="inline-block mb-2">ایمیل</label>
-    <input
-      formControlName="email"
-      type="email"
-      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder=" ایمیل"
-    />
-    @if (registerForm.controls.email.invalid &&(
-    registerForm.controls.email.dirty || registerForm.controls.email.touched)) {
-    @if (registerForm.controls.email.hasError('required')) {
-    <p class="text-red-400">این فیلد اجباری است</p>
-    } } @if (registerForm.controls.email.hasError('email')) {
-    <p class="text-red-400">لطفاً یک آدرس ایمیل معتبر وارد کنید.</p>
-    }
+    <app-input
+      [control]="registerForm.controls.email"
+      [lable]="'ایمیل'"
+      [placeholder]="'ایمیل'"
+      [type]="'email'"
+    ></app-input>
   </div>
   <!-- Age -->
   <div class="mb-3">
-    <label class="inline-block mb-2">سن</label>
-    <input
-      formControlName="age"
-      type="number"
-      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-    />
-    @if (registerForm.controls.age.invalid &&( registerForm.controls.age.dirty
-    || registerForm.controls.age.touched)) { @if
-    (registerForm.controls.age.hasError('required')) {
-    <p class="text-red-400">این فیلد اجباری است</p>
-    } } @if (registerForm.controls.age.hasError('min')) {
-    <p class="text-red-400">
-      کاربر باید حداقل
-      {{registerForm.controls.age.errors?.['min']?.min}}
-      سال سن داشته باشد .
-    </p>
-    }
+    <app-input
+      [control]="registerForm.controls.age"
+      [lable]="'سن'"
+      [placeholder]="'سن'"
+      [type]="'Number'"
+    ></app-input>
   </div>
   <!-- Password -->
   <div class="mb-3">
-    <label class="inline-block mb-2">رمز عبور </label>
-    <input
-      formControlName="password"
-      type="password"
-      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder="رمز عبور "
-    />
-    @if (registerForm.controls.password.invalid &&(
-    registerForm.controls.password.dirty ||
-    registerForm.controls.password.touched)) { @if
-    (registerForm.controls.password.hasError('required')) {
-    <p class="text-red-400">این فیلد اجباری است</p>
-    } }
+    <app-input
+      [control]="registerForm.controls.password"
+      [lable]="'رمزعبور'"
+      [placeholder]="'رمزعبور'"
+      [type]="'password'"
+    ></app-input>
   </div>
   <!-- Confirm Password -->
   <div class="mb-3">
-    <label class="inline-block mb-2">تکرار رمز عبور</label>
-    <input
-      formControlName="confirmPass"
-      type="password"
-      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder="تکرار رمز عبور "
-    />
-    @if (registerForm.controls.confirmPass.invalid &&(
-    registerForm.controls.confirmPass.dirty ||
-    registerForm.controls.confirmPass.touched)) { @if
-    (registerForm.controls.confirmPass.hasError('required')) {
-    <p class="text-red-400">این فیلد اجباری است</p>
-    } }
+    <app-input
+      [control]="registerForm.controls.confirmPassword"
+      [lable]="'تایید رمزعبور'"
+      [placeholder]="'تایید رمزعبور'"
+      [type]="'password'"
+      [formGroup]="registerForm"
+    ></app-input>
   </div>
   <!-- Phone Number -->
   <div class="mb-3">
-    <label class="inline-block mb-2">تلفن </label>
-    <input
-      formControlName="phoneNumber"
-      type="text"
-      class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder="شماره تلفن را وارد کنید"
-      minlength="11"
-    />
-    @if (registerForm.controls.phoneNumber.invalid &&(
-    registerForm.controls.phoneNumber.dirty ||
-    registerForm.controls.phoneNumber.touched)) { @if
-    (registerForm.controls.phoneNumber.hasError('required')) {
-    <p class="text-red-400">این فیلد اجباری است</p>
-    } } @if (registerForm.controls.phoneNumber.hasError('minlength')) {
-    <p class="text-red-400">
-      طول این فیلد حداقل باید
-      {{registerForm.controls.phoneNumber.errors?.['minlength']['requiredLength']}}
-      کاراکتر باشد .
-    </p>
-    }
+    <app-input
+      [control]="registerForm.controls.phone"
+      [lable]="'تلفن'"
+      [placeholder]="'تلفن'"
+      [type]="'phoneNumber'"
+    ></app-input>
   </div>
   <button
+    [disabled]="registerForm.invalid"
+    [ngClass]="{
+      'bg-gray-500 text-white hover:bg-gray-500': registerForm.invalid
+    }"
     type="submit"
     class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500"
   >

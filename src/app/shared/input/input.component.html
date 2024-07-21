@@ -1,6 +1,27 @@
+<label class="inline-block mb-2">{{ lable }}</label>
 <input
-  formControlName="name"
-  type="text"
+  [type]="type"
   class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-  [placeholder]=" placeholder"
+  [formControl]="control"
+  [placeholder]="placeholder"
 />
+@if(control.invalid &&(control.dirty || control.touched)){ @if
+(control.hasError('required')) {
+<p class="text-red-400">این فیلد اجباری است</p>
+}} @if(control.hasError('minlength')){
+<p class="text-red-400">
+  طول این فیلد حداقل باید
+  {{control.errors?.['minlength']['requiredLength']}}
+  کاراکتر باشد .
+</p>
+} @if(control.hasError('min')){
+<p class="text-red-400">
+  عدد نباید کمتر از
+  {{control.errors?.['min']?.min}}
+  باشد .
+</p>
+} @if (control.hasError('email')) {
+<p class="text-red-400">لطفاً یک آدرس ایمیل معتبر وارد کنید.</p>
+} @if (formGroup.errors?.['mismatch'] ) {
+<p class="text-red-400">کلمه عبور یکسان نیست</p>
+}
