@@ -15,6 +15,6 @@ jobs:
       - name: update-liara
         env:
           LIARA_TOKEN: ${{ secrets.LIARA_API_TOKEN }}
-        run: |
+        run: 
           npm i -g @liara/cli@6
           liara deploy --app="friendly-jang-botvia2rv" --api-token="$LIARA_TOKEN" --no-app-logs --port=4200
