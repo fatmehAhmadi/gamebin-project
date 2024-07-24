@@ -9,6 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
+import { AlertComponent } from '../../shared/alert/alert.component';
 
 @Component({
   selector: 'app-register',
@@ -52,8 +53,14 @@ export class RegisterComponent {
     },
     { validators: RegisterComponent.passwordMatchValidator() }
   );
+  alertActive: boolean = false;
+  activeMessage: string = '';
+  alertColor: string = '';
 
   onsubmit(form: FormGroup) {
     console.log(form);
+    this.alertActive = true;
+    this.activeMessage = 'لطفا صبر کنیدد';
+    this.alertColor = 'blue';
   }
 }
