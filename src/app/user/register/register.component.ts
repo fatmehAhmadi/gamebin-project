@@ -44,10 +44,17 @@ export class RegisterComponent {
       ]),
       email: new FormControl(null, [Validators.required, Validators.email]),
       age: new FormControl(null, [Validators.required, Validators.min(3)]),
-      phone: new FormControl(null, [Validators.required]),
+      phone: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(
+          /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/
+        ),
+      ]),
       password: new FormControl(null, [
         Validators.required,
-        Validators.minLength(8),
+        Validators.pattern(
+          /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$/
+        ),
       ]),
       confirmPassword: new FormControl(null, [Validators.required]),
     },

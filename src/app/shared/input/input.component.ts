@@ -12,5 +12,6 @@ export class InputComponent {
   @Input() lable: string = '';
   @Input() control: FormControl = new FormControl();
   @Input() formGroup: FormGroup = new FormGroup({});
+  @Input() patternType: 'password' | 'phone' = 'password';
 
 }

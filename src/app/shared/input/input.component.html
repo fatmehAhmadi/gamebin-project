@@ -24,4 +24,11 @@
 <p class="text-red-400">لطفاً یک آدرس ایمیل معتبر وارد کنید.</p>
 } @if (formGroup.errors?.['mismatch'] ) {
 <p class="text-red-400">کلمه عبور یکسان نیست</p>
-}
+} @if(control.hasError('pattern') && patternType==='password'){
+  <p class="text-red-400">
+    رمز عبور باید شامل حداقل ۸ کاراکتر، یک حرف بزرگ، یک حرف کوچک، یک عدد و یک
+    کاراکتر ویژه #?!&#64;$ %^&*- باشد.
+  </p>
+  } @if(control.hasError('pattern') && patternType==='phone'){
+  <p class="text-red-400">لطفاً شماره تلفن را ۱۰ رقمی وارد کنید</p>
+  }
