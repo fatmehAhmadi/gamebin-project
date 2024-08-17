@@ -13,5 +13,4 @@ export class InputComponent {
   @Input() control: FormControl = new FormControl();
   @Input() formGroup: FormGroup = new FormGroup({});
   @Input() patternType: 'password' | 'phone' = 'password';
-
 }

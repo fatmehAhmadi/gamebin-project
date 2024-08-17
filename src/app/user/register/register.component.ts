@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -9,7 +9,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
-import { AlertComponent } from '../../shared/alert/alert.component';
+import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
 
 @Component({
   selector: 'app-register',
@@ -19,6 +19,8 @@ import { AlertComponent } from '../../shared/alert/alert.component';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
+  firebaseAuth = inject(Auth);
+
   static passwordMatchValidator(): ValidatorFn {
     return (form: AbstractControl): ValidationErrors | null => {
       const formGroup = form as FormGroup;
@@ -65,9 +67,13 @@ export class RegisterComponent {
   alertColor: string = '';
 
   onsubmit(form: FormGroup) {
-    console.log(form);
     this.alertActive = true;
     this.activeMessage = 'لطفا صبر کنیدد';
     this.alertColor = 'blue';
+    createUserWithEmailAndPassword(
+      this.firebaseAuth,
+      this.registerForm.controls.email.value!,
+      this.registerForm.controls.password.value!
+    ).then((res) => console.log(res));
   }
 }
