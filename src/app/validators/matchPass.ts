@@ -13,11 +13,8 @@ export class customValidators {
       const confirmPassword = formGroup.get('confirmPassword')?.value;
 
       if (password && confirmPassword && password !== confirmPassword) {
-        console.log('mismatch');
-
         return { mismatch: true };
       }
-      console.log('no error');
 
       return null;
     };
