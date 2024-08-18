@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject } from '@angular/core';
-import { Auth, signInWithEmailAndPassword } from '@angular/fire/auth';
+import { signInWithEmailAndPassword } from '@angular/fire/auth';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormsModule, NgForm } from '@angular/forms';
 
@@ -17,15 +17,14 @@ export class LoginComponent {
     password: '',
   };
 
-  firebaseAuth = inject(Auth);
-
   login() {
-    signInWithEmailAndPassword(
-      this.firebaseAuth,
-      this.credentials.email,
-      this.credentials.password
-    ).then((res) => {
-      console.log(res);
-    });
+    // this.firebaseAuth
+    //   .signInWithEmailAndPassword(
+    //     this.credentials.email,
+    //     this.credentials.password
+    //   )
+    //   .then((res) => {
+    //     console.log(res);
+    //   });
   }
 }

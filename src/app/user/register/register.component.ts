@@ -10,6 +10,10 @@ import {
 } from '@angular/forms';
 import { SharedModule } from '../../shared/shared.module';
 import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AuthService } from '../../service/auth.service';
+import { IUser } from '../../model/user.model';
+import { customValidators } from '../../validators/matchPass';
 
 @Component({
   selector: 'app-register',
@@ -19,24 +23,7 @@ import { Auth, createUserWithEmailAndPassword } from '@angular/fire/auth';
   styleUrl: './register.component.css',
 })
 export class RegisterComponent {
-  firebaseAuth = inject(Auth);
-
-  static passwordMatchValidator(): ValidatorFn {
-    return (form: AbstractControl): ValidationErrors | null => {
-      const formGroup = form as FormGroup;
-      const password = formGroup.get('password')?.value;
-      const confirmPassword = formGroup.get('confirmPassword')?.value;
-
-      if (password && confirmPassword && password !== confirmPassword) {
-        console.log('mismatch');
-
-        return { mismatch: true };
-      }
-      console.log('no error');
-
-      return null;
-    };
-  }
+  authService = inject(AuthService); //service
 
   registerForm = new FormGroup(
     {
@@ -60,7 +47,7 @@ export class RegisterComponent {
       ]),
       confirmPassword: new FormControl(null, [Validators.required]),
     },
-    { validators: RegisterComponent.passwordMatchValidator() }
+    { validators: customValidators.passwordMatchValidator() }
   );
   alertActive: boolean = false;
   activeMessage: string = '';
@@ -70,10 +57,6 @@ export class RegisterComponent {
     this.alertActive = true;
     this.activeMessage = 'لطفا صبر کنیدد';
     this.alertColor = 'blue';
-    createUserWithEmailAndPassword(
-      this.firebaseAuth,
-      this.registerForm.controls.email.value!,
-      this.registerForm.controls.password.value!
-    ).then((res) => console.log(res));
+    this.authService.createUser(this.registerForm.value as IUser);
   }
 }
