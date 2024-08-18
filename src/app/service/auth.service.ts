@@ -5,6 +5,7 @@ import {
   AngularFirestoreCollection,
 } from '@angular/fire/compat/firestore';
 import { IUser } from '../model/user.model';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +15,11 @@ export class AuthService {
   firebaseDb = inject(AngularFirestore); //save all data of user
 
   private userCollection!: AngularFirestoreCollection<IUser>;
+  public isAuthenticated!: Observable<boolean>;
 
   constructor() {
     this.userCollection = this.firebaseDb.collection('users');
+    this.isAuthenticated = this.firebaseAuth.user.pipe(map((user) => !!user));
   }
 
   async createUser(userData: IUser) {

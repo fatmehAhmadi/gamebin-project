@@ -7,9 +7,13 @@
       <!-- Primary Navigation -->
       <ul class="flex flex-row mt-1">
         <!-- Navigation Links -->
+        @if(!(auth.isAuthenticated |async)){
         <li>
-          <a class="px-2" href="#" (click)="openModal($event)">ورود / ثبت نام</a>
+          <a class="px-2" href="#" (click)="openModal($event)"
+            >ورود / ثبت نام</a
+          >
         </li>
+        }@else{
         <li>
           <a class="px-2" href="#">مدیریت</a>
         </li>
@@ -19,6 +23,10 @@
         <li>
           <a class="px-2" href="about.html">درباره ما</a>
         </li>
+        <li>
+          <a class="px-2" href="#" (click)="logOut($event)">خروج </a>
+        </li>
+        }
       </ul>
     </div>
 

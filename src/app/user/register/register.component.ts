@@ -24,6 +24,7 @@ import { customValidators } from '../../validators/matchPass';
 })
 export class RegisterComponent {
   authService = inject(AuthService); //service
+  inSubmission: boolean = false;
 
   registerForm = new FormGroup(
     {
@@ -57,6 +58,19 @@ export class RegisterComponent {
     this.alertActive = true;
     this.activeMessage = 'لطفا صبر کنیدد';
     this.alertColor = 'blue';
-    this.authService.createUser(this.registerForm.value as IUser);
+    this.inSubmission = true;
+
+    try {
+      this.authService.createUser(this.registerForm.value as IUser);
+    } catch (error) {
+      this.activeMessage = 'خطا، لطفا دوباره امتحان کنید';
+      this.alertColor = 'red';
+      this.inSubmission = false;
+      return;
+    }
+    this.activeMessage = 'اکانت شما باموفقیت ساخته شد';
+    this.alertColor = 'green';
+    this.inSubmission = true;
+    this.registerForm.reset();
   }
 }
