@@ -6,6 +6,7 @@ import {
 } from '@angular/fire/compat/firestore';
 import { IUser } from '../model/user.model';
 import { map, Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ import { map, Observable } from 'rxjs';
 export class AuthService {
   firebaseAuth = inject(AngularFireAuth);
   firebaseDb = inject(AngularFirestore); //save all data of user
+  router = inject(Router)
 
   private userCollection!: AngularFirestoreCollection<IUser>;
   public isAuthenticated!: Observable<boolean>;
@@ -44,5 +46,22 @@ export class AuthService {
       age: userData.age,
     });
     await userCred.user.updateProfile({ displayName: userData.name });
+  }
+
+  async login(email: any, password: any) {
+    this.firebaseAuth
+      .signInWithEmailAndPassword(
+        email,
+        password
+      )
+      .then((res) => {
+        console.log(res);
+      });
+  }
+
+  async logOutUser(event: Event) {
+    event.preventDefault();
+    await this.firebaseAuth.signOut();
+    this.router.navigateByUrl('/')
   }
 }

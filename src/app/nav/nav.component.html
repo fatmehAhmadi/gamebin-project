@@ -9,31 +9,29 @@
         <!-- Navigation Links -->
         @if(!(auth.isAuthenticated |async)){
         <li>
-          <a class="px-2" href="#" (click)="openModal($event)"
-            >ورود / ثبت نام</a
-          >
+          <a class="px-2" href="#" (click)="openModal($event)">ورود / ثبت نام</a>
+        </li>
+        <li>
+          <a class="px-2" routerLink="/about" routerLinkActive="text-indigo-400">درباره ما</a>
         </li>
         }@else{
         <li>
-          <a class="px-2" href="#">مدیریت</a>
+          <a class="px-2" routerLink="video/manage" routerLinkActive="text-indigo-400">مدیریت</a>
         </li>
         <li>
-          <a class="px-2" href="#">اپلود</a>
+          <a class="px-2" routerLink="video/upload">اپلود</a>
         </li>
         <li>
-          <a class="px-2" href="about.html">درباره ما</a>
+          <a class="px-2" routerLink="/about" routerLinkActive="text-indigo-400">درباره ما</a>
         </li>
         <li>
           <a class="px-2" href="#" (click)="logOut($event)">خروج </a>
         </li>
         }
+
       </ul>
     </div>
 
-    <a
-      class="text-3xl text-indigo-400 font-bold uppercase mr-4"
-      href="index.html"
-      >گیم بین</a
-    >
+    <a class="text-3xl text-indigo-400 font-bold uppercase mr-4" href="index.html" routerLink="/">گیم بین</a>
   </nav>
 </header>

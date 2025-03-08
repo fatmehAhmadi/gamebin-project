@@ -1,18 +1,15 @@
 <!-- Login Form -->
 <form #loginForm="ngForm" (ngSubmit)="login()">
+  @if (alertActive) {<app-alert [color]="alertColor">{{
+    activeMessage
+    }}</app-alert>}
+
   <!-- Email -->
   <div class="mb-3">
     <label class="inline-block mb-2">ایمیل</label>
-    <input
-      type="email"
+    <input type="email"
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder=" ایمیل"
-      #emaill="ngModel"
-      name="email"
-      [(ngModel)]="credentials.email"
-      required
-      email
-    />
+      placeholder=" ایمیل" #emaill="ngModel" name="email" [(ngModel)]="credentials.email" required email />
     @if(emaill.errors?.['required'] && (emaill.touched || emaill.dirty)){
     <p class="text-red-400">این فیلد اجباری است</p>
     } @if(emaill.errors?.['email']){
@@ -23,16 +20,10 @@
   <!-- Password -->
   <div class="mb-3">
     <label class="inline-block mb-2">رمز عبور</label>
-    <input
-      type="password"
+    <input type="password"
       class="block w-full py-1.5 px-3 text-gray-200 border border-gray-400 transition duration-500 focus:outline-none rounded bg-transparent focus:border-indigo-400"
-      placeholder="رمز عبور"
-      #passwordd="ngModel"
-      [(ngModel)]="credentials.password"
-      name="password"
-      required
-      minlength="3"
-    />
+      placeholder="رمز عبور" #passwordd="ngModel" [(ngModel)]="credentials.password" name="password" required
+      minlength="3" />
     @if(passwordd.errors?.['required'] && (passwordd.touched ||
     passwordd.dirty)){
     <p class="text-red-400">این فیلد اجباری است</p>
@@ -44,14 +35,9 @@
     </p>
     }
   </div>
-  <button
-    type="submit"
-    [disabled]="!loginForm.valid"
-    [ngClass]="{
+  <button type="submit" [disabled]="!loginForm.valid" [ngClass]="{
       'bg-gray-500 text-white hover:bg-gray-500': !loginForm.valid
-    }"
-    class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500"
-  >
+    }" class="block w-full bg-indigo-400 text-white py-1.5 px-3 rounded transition hover:bg-indigo-500">
     ورود
   </button>
 </form>
