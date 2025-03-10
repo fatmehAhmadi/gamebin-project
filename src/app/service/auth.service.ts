@@ -49,14 +49,14 @@ export class AuthService {
   }
 
   async login(email: any, password: any) {
-    this.firebaseAuth
+    return this.firebaseAuth
       .signInWithEmailAndPassword(
         email,
         password
       )
-      .then((res) => {
-        console.log(res);
-      });
+    // .then((res) => {
+    //   console.log(res);
+    // });
   }
 
   async logOutUser(event: Event) {

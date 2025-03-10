@@ -25,21 +25,21 @@ export class LoginComponent {
     password: '',
   };
 
-  login() {
+  async login() {
     this.alertActive = true;
-    this.activeMessage = 'لطفا صبر کنیدد';
+    this.activeMessage = 'لطفا صبر کنید';
     this.alertColor = 'blue';
 
     try {
-      this.authService.login(this.credentials.email, this.credentials.password)
-
+      await this.authService.login(this.credentials.email, this.credentials.password);
+      this.activeMessage = 'ورود شما با موفقیت انجام شد';
+      this.alertColor = 'green';
     } catch (error) {
+      console.error("خطای ورود:", error);
       this.activeMessage = 'خطا، لطفا دوباره امتحان کنید';
       this.alertColor = 'red';
-      return;
     }
-    this.activeMessage = 'ورود شما باموفقیت انجام شد';
-    this.alertColor = 'green';
-
   }
+
+
 }
