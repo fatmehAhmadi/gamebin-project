@@ -4,9 +4,11 @@ import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-input',
   templateUrl: './input.component.html',
-  styleUrl: './input.component.css',
+  styleUrls: ['./input.component.css'],
 })
 export class InputComponent {
+  constructor() { }
+
   @Input() type: string | number = 'text';
   @Input() placeholder: string = '';
   @Input() lable: string = '';

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ModalComponent } from './modal/modal.component';
-import { AuthModalComponent } from '../user/auth-modal/auth-modal.component';
 import { TabsContainerComponent } from './tabs-container/tabs-container.component';
 import { TabComponent } from './tab/tab.component';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,7 +15,7 @@ import { AlertComponent } from './alert/alert.component';
     InputComponent,
     AlertComponent,
   ],
-  imports: [CommonModule, AuthModalComponent, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   exports: [
     ModalComponent,
     TabsContainerComponent,
@@ -26,4 +25,4 @@ import { AlertComponent } from './alert/alert.component';
     AlertComponent,
   ],
 })
-export class SharedModule {}
+export class SharedModule { }
